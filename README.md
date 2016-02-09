@@ -4,7 +4,9 @@
 
 ##Intalling requirements
 Run `virtualenv ./myenv/`
-Activate `source bin/myenv/activate`\
+
+Activate `source ./myenv/bin/activate
+
 
 Note: It is STRONGLY recommended to use virtual environment
 
