@@ -1,14 +1,13 @@
-#Echin Arch is a Python DJanog portfolio and blog application
+#EchinArch is a Python DJango App
 
  Current DJango version `1.5.1`
 
-##Intalling requirement
-Note: it is STRONGLY recommended to use virtual enviaronment
+##Intalling requirements
 Run `virtualenv ./myenv/`
-Actuvate `source bin/myenv/activate`
+Activate `source bin/myenv/activate`\
+
+Note: It is STRONGLY recommended to use virtual environment
+
 
 ##Install basic dependancies
 Run `pip install -U -r requirements.txt`
-
-
-
