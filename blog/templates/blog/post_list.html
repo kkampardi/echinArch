@@ -85,7 +85,7 @@
 			</div>
 		</div>
 	</header>
-
+{{posts}}
 	<main id="content" role="main">
 		<div class="container container-masonry">
 			<div class="inner">
@@ -102,17 +102,18 @@
 						</div>
 					</div>
 
+{% for post in posts %}
 					<div class="box col-sm-6 col-md-3">
 						<div class="post-box vertical clearfix">
 							<a href="post.html" class="image-link arrow-icon"><img src="{% static 'img/sample-thumb.png' %}" width="434" height="434" alt=""></a>
 							<div class="extra-info">
-								<p class="meta small">1 day ago by <a href="#">Nicole</a></p>
-								<h5><a href="post.html">Harnessing Flexbox For Today’s Webapps</a></h5>
+								<p class="meta small">{{post.created_date}} <a href="#">{{post.author}}</a></p>
+								<h5><a href="post.html">{{post.title}}</a></h5>
 							</div>
 						</div>
 					</div>
-
-					<div class="box col-sm-6 col-md-3">
+{% endfor %}
+<!--					<div class="box col-sm-6 col-md-3">
 						<div class="post-box vertical clearfix">
 							<div class="extra-info">
 								<p class="meta small">2 day ago by <a href="#">Sheila</a></p>
@@ -142,7 +143,7 @@
 						</div>
 					</div>
 
-					<div class="box col-sm-12 text-center">
+	-->				<div class="box col-sm-12 text-center">
 						<a href="blog.html" class="button color no-bottom">Load More Posts</a>
 					</div>
 
