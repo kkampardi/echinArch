@@ -13,12 +13,9 @@ class Project(models.Model):
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
     category = models.ForeignKey('Category')
+    tags = models.ManyToManyField('Tag')
     skills = models.ManyToManyField('Skill')
-
-    created_date = models.DateTimeField(
-            default=timezone.now)
-    published_date = models.DateTimeField(
-            blank=True, null=True)
+    image = models.ImageField(upload_to='portfolio/static/img')
 
     class Meta:
         ordering = ['-start_date', '-end_date', ]
@@ -34,6 +31,16 @@ class Project(models.Model):
         return self.name
 
 class Skill(models.Model):
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=50, unique=True)
+
+    class Meta:
+        ordering = ['name']
+
+    def __unicode__(self):
+        return self.name
+
+class Tag(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True)
 
