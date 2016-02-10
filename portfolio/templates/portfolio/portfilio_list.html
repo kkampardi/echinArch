@@ -1,0 +1,36 @@
+{% extends 'portfolio/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<main id="content" role="main">
+		<div class="container container-masonry">
+			<div class="inner">
+				<div class="row">
+					<div class="box col-sm-4 col-md-6">
+						<div class="thumb featured">
+							<div class="photo">
+								<a href="project.html">
+									<img src="{% static 'img/sample-thumb.png' %}" alt="" width="715" height="715">
+								</a>
+							</div>
+						</div>
+					</div>
+					{% for project in projects %}
+					<div class="box col-xs-6 col-sm-4 col-md-3">
+						<div class="thumb">
+							<div class="photo">
+								<a href="#">
+									<img src="{{project.image}}" alt="" width="434" height="434">
+									<span class="info"><strong class="title">{{project.name}}</strong>
+										<span class="excerpt">{{project.short_description}}</span>
+										<em class="arrow-right"></em></span>
+								</a>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+			</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</main>
+{% endblock %}
