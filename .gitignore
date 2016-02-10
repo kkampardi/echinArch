@@ -1,2 +1,7 @@
 
-echinarch
+*.pyc
+*.pyo
+build/
+dist/
+test/
+echinarchenv
