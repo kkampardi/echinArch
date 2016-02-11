@@ -31,9 +31,9 @@
 					<nav>
 						<ul>
 							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About</a></li>
+							<li><a href="{% url 'about' %}">About</a></li>
 							<li class="menu-item-has-children current-menu-parent">
-								<a href="work.html">Work</a>
+								<a href="{% url 'portfolio_list' %}">Work</a>
 								<ul>
 									<li class="current-menu-item"><a href="work.html">Classic Gallery</a></li>
 									<li><a href="work-categories.html">Category Based</a></li>
@@ -106,5 +106,30 @@
 	</footer>
 	<script type="text/javascript" src="{% static  'js/jquery.min.js' %}"></script>
 	<script type="text/javascript" src="{% static  'js/site.js' %}"></script>
+	<script type="text/javascript" src="{% static  'js/owl.carousel.min.js' %}"></script>
+	<script>
+	  jQuery(".owl-carousel.owl-slider").owlCarousel({
+	    items   : 1,
+	    nav     : true,
+	    navText : ['', ''],
+	    loop    : true
+	  });
+	  jQuery(".owl-carousel.owl-thumbs").owlCarousel({
+	    items   : 3,
+	    margin  : 30,
+	    nav     : true,
+	    navText : ['', ''],
+	    dots    : false,
+	    loop    : false,
+	    responsive : {
+	      0: {
+	        items   : 2
+	      },
+	      768: {
+	        items   : 3
+	      }
+	    }
+	  });
+	</script>
 </body>
 </html>
