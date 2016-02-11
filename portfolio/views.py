@@ -2,9 +2,11 @@ from django.shortcuts import render, get_object_or_404, render_to_response
 from django.utils import timezone
 from .models import Project
 
+def home(request):
+    return  render_to_response('portfolio/home.html', {})
 
 def about(request):
-    return render_to_response('about.html', {})
+    return render_to_response('portfolio/about.html', {})
 
 def portfolio_list(request):
     projects = Project.objects.filter(start_date__lte=timezone.now()).order_by('start_date')
