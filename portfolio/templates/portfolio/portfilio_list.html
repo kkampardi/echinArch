@@ -1,6 +1,7 @@
 {% extends 'portfolio/base.html' %}
 {% load staticfiles %}
 {% block content %}
+
 <main id="content" role="main">
 		<div class="container container-masonry">
 			<div class="inner">
@@ -9,7 +10,10 @@
 						<div class="thumb featured">
 							<div class="photo">
 								<a href="project.html">
-									<img src="{% static 'img/sample-thumb.png' %}" alt="" width="715" height="715">
+									<img src="{% static 'img/featureblog.png' %}" alt="" width="715" height="715">
+									<span class="info"><strong class="big-title">Dominance, focal points and hierarchy</strong>
+										<span class="excerpt">Your content might be the king, but are you presenting it as one? Do people look where they should?</span>
+										<em class="arrow-right"></em></span>
 								</a>
 							</div>
 						</div>
@@ -19,7 +23,7 @@
 						<div class="thumb">
 							<div class="photo">
 								<a href="#">
-									<img src="{{project.image}}" alt="" width="434" height="434">
+									<img src="media/{{project.image}}" alt="" width="434" height="434">
 									<span class="info"><strong class="title">{{project.name}}</strong>
 										<span class="excerpt">{{project.short_description}}</span>
 										<em class="arrow-right"></em></span>

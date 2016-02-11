@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from django.conf import settings
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,6 +25,7 @@ SECRET_KEY = 'jo!ojt3w82a_b7_%($t$di1gq-v^onpejmp2_zwepw0-17xf99'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+THUMBNAIL_DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -38,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'portfolio',
-    #'blog',
+    'menu',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -65,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.request',
             ],
         },
     },
@@ -124,5 +127,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
+MEDIA_URL = '/media/'
+
+MENU_SELECT_PARENTS = False
+MENU_HIDE_EMPTY = False
+print 'Settings.py STATIC_ROOT: %s' % (STATIC_ROOT)
+print 'Settings.py STATIC_URL: %s' % (STATIC_URL)
+print 'Settings.py MEDIA_ROOT: %s' % (MEDIA_ROOT)
+print 'Settings.py MEDIA_URL: %s' % (MEDIA_URL)

@@ -5,3 +5,6 @@ build/
 dist/
 test/
 echinarchenv
+portfolio/static
+static
+migrations
