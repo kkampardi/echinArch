@@ -12,9 +12,6 @@ class Project(models.Model):
     description = models.TextField()
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
-    category = models.ForeignKey('Category')
-    tags = models.ManyToManyField('Tag')
-    skills = models.ManyToManyField('Skill')
     image = models.ImageField(upload_to='portfolio')
 
     class Meta:
@@ -30,6 +27,8 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
+
+"""
 class Skill(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True)
@@ -60,3 +59,5 @@ class Category(models.Model):
 
     def __unicode__(self):
         return self.name
+
+"""
