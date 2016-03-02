@@ -23,14 +23,21 @@ admin.site.register(Thing, ThingAdmin)
 admin.site.register(Social, SocialAdmin)
 admin.site.register(Upload, UploadAdmin)
 """
-"""
 from django.contrib import admin
-from models import Project # , Category, Skill, Tag
-# ProjectImage
+from models import Project
+
+#automated slug creation
+class ProjectAdmin(admin.ModelAdmin):
+    model = Project
+    list_display = ('name', 'description',)
+    prepopulated_fields = {'slug': ('name',)}
+
+
 # Register your models here.
-admin.site.register(Project)
+
+admin.site.register(Project, ProjectAdmin)
+
 # admin.site.register(Category)
 # admin.site.register(Tag)
 # admin.site.register(Skill)
 # admin.site.register(ProjectImage)
-"""

@@ -15,6 +15,9 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
+
 # set the SECURE_HSTS_SECONDS
 SECURE_HSTS_SECONDS = 3600
 # recomended
@@ -28,22 +31,16 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # SECURE_BROWSER_XSS_FILTER set to True, so your pages will not be served with an 'x-xss-protection: 1; mode=block' header
 SECURE_BROWSER_XSS_FILTER = True
-
+"""
 # SESSION_COOKIE_SECURE is not set to True. Using a secure-only session cookie makes it more difficult for network traffic sniffers to hijack user sessions.
 SESSION_COOKIE_SECURE = True
-
-"""
 # set CSRF_COOKIE_SECURE to True
 CSRF_COOKIE_SECURE = True
+"""
 # set CSRF_COOKIE_HTTPONLY to True
 CSRF_COOKIE_HTTPONLY = True
-"""
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
-DEBUG = True
-ALLOWED_HOSTS = []
-
 from django.core.exceptions import ImproperlyConfigured
 def get_env_variable(var_name, filename):
     """ Get the environment variable or return exception """
@@ -55,22 +52,7 @@ def get_env_variable(var_name, filename):
         error_msg = "Set the %s environment variable" % var_name
         raise ImproperlyConfigured(error_msg)
 
-SECRET_KEY = get_env_variable("SECRET_KEY", "/etc/echinarch_secret_key.txt")
-
-
-# SECURITY WARNING: don't run with debug turned on in production!
-server  = get_env_variable("server", "/etc/server.txt")
-if server is "local":
-    try:
-        from settings_local import *
-    except ImportError:
-        pass
-elif server is "public":
-    try:
-        from settings_local import *
-    except ImportError:
-        pass
-
+SECRET_KEY = get_env_variable("SECRET_KEY", '/etc/echinarch_secret_key.txt')
 
 # Application definition
 
@@ -127,14 +109,6 @@ WSGI_APPLICATION = 'portfolioapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -168,18 +142,26 @@ EMAIL_USE_TLS = False
 EMAIL_PORT = 1025
 LOGIN_REDIRECT_URL = "home"
 
+"""
 print 'Settings.py STATIC_ROOT: %s' % (STATIC_ROOT)
 print 'Settings.py STATIC_URL: %s' % (STATIC_URL)
+"""
+
+### settings_production.py file
+### settings that are not environment dependent
 
 
 server  = get_env_variable("server", "/etc/server.txt")
-if server is "local":
+if server == "local":
+    print server
     try:
         from settings_local import *
     except ImportError:
         pass
-elif server is "public":
+elif server == "public":
     try:
-        from settings_local import *
+        from settings_production import *
     except ImportError:
         pass
+else:
+    pass
