@@ -34,11 +34,13 @@ SECURE_BROWSER_XSS_FILTER = True
 """
 # SESSION_COOKIE_SECURE is not set to True. Using a secure-only session cookie makes it more difficult for network traffic sniffers to hijack user sessions.
 SESSION_COOKIE_SECURE = True
+
 # set CSRF_COOKIE_SECURE to True
 CSRF_COOKIE_SECURE = True
 """
 # set CSRF_COOKIE_HTTPONLY to True
 CSRF_COOKIE_HTTPONLY = True
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 from django.core.exceptions import ImproperlyConfigured
