@@ -15,7 +15,7 @@ settings_production.py
 post-double.py
 labels
 echinArch.sock
-
+migrations
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
