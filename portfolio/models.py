@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
 from ckeditor.fields import RichTextField
+from PIL import Image
 
 class Project(models.Model):
     name = models.CharField(max_length=200)
@@ -11,6 +12,7 @@ class Project(models.Model):
     clients = models.CharField(max_length=400)
     start_date = models.DateField(blank=True, null=True)
     image = models.ImageField(upload_to='portfolio')
+
 
     class Meta:
         ordering = ['-start_date', ]
@@ -26,36 +28,25 @@ class Project(models.Model):
         return self.name
 
 
-"""
-class Skill(models.Model):
-    name = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=50, unique=True)
 
-    class Meta:
-        ordering = ['name']
+# our helper, add above the new model
+def get_image_path(instance, filename):
+    return '/'.join(['project_images', instance.project.slug, filename])
 
-    def __unicode__(self):
-        return self.name
+class Upload(models.Model):
+    project = models.ForeignKey(Project, related_name="uploads")
+    image = models.ImageField(upload_to=get_image_path)
 
-class Tag(models.Model):
-    name = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=50, unique=True)
+    # add this bit in after our model
+def save(self, *args, **kwargs):
+    # this is required when you override save functions
+    super(Upload, self).save(*args, **kwargs)
+    # our new code
+    if self.image:
+        image = Image.open(self.image)
+        i_width, i_height = image.size
+        max_size = (100,100)
 
-    class Meta:
-        ordering = ['name']
-
-    def __unicode__(self):
-        return self.name
-
-class Category(models.Model):
-    name = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=50, unique=True)
-    position = models.PositiveIntegerField()
-
-    class Meta:
-        ordering = ["position"]
-
-    def __unicode__(self):
-        return self.name
-
-"""
+        if i_width > 100:
+            image.thumbnail(max_size, Image.ANTIALIAS)
+            image.save(self.image.path)

@@ -15,7 +15,15 @@ def portfolio_list(request):
 
 def portfolio_detail(request, pk):
     project = get_object_or_404(Project, pk=pk)
-    return render(request, 'portfolio/portfolio_detail.html', {'project': project})
+
+    #grub all the uploads for current project
+    uploads = project.uploads.all()
+
+    return render(request, 'portfolio/portfolio_detail.html',
+    {
+        'project': project,
+        'uploads': uploads,
+    })
 
 def contact(request):
     return render( request, 'contact.html', {})

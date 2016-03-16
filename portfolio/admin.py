@@ -24,7 +24,7 @@ admin.site.register(Social, SocialAdmin)
 admin.site.register(Upload, UploadAdmin)
 """
 from django.contrib import admin
-from models import Project
+from models import Project, Upload
 
 #automated slug creation
 class ProjectAdmin(admin.ModelAdmin):
@@ -32,12 +32,10 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = ('name', 'description',)
     prepopulated_fields = {'slug': ('name',)}
 
+class UploadAdmin(admin.ModelAdmin):
+    list_display = ('project',)
+    list_display_links = ('project',)
 
 # Register your models here.
-
 admin.site.register(Project, ProjectAdmin)
-
-# admin.site.register(Category)
-# admin.site.register(Tag)
-# admin.site.register(Skill)
-# admin.site.register(ProjectImage)
+admin.site.register(Upload, UploadAdmin)
