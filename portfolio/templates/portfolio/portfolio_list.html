@@ -18,20 +18,20 @@
 							</div>
 						</div>
 					</div>
-					{% for project in projects %}
+				{% for project in projects %}
 					<div class="box col-xs-6 col-sm-4 col-md-3">
 						<div class="thumb">
 							<div class="photo">
 								<a href="{% url 'portfolio_detail' pk=project.pk %}">
 									<img src="../media/{{project.image}}" alt="" width="434" height="434">
 									<span class="info"><strong class="title">{{project.name}}</strong>
-										<span class="excerpt">{{project.short_description}}</span>
+										<span class="excerpt">{{project.short_description|safe}}</span>
 										<em class="arrow-right"></em></span>
 								</a>
 							</div>
 						</div>
 					</div>
-					{% endfor %}
+				{% endfor %}
 			</div>
 			</div>
 			<div class="clear"></div>

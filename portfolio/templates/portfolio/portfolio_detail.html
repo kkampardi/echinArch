@@ -3,7 +3,7 @@
 {% block content %}
 	<main id="content" class="white-background" role="main">
 		<div class="container">
-			<h2 class="single-title">The Nordic Branding</h2>
+			<h2 class="single-title">{{project.name}}</h2>
 			<div class="owl-carousel owl-slider">
 				<img src="{% static 'img/sample-slide.png' %}" width="1240" height="698" alt="">
 				<img src="{% static 'img/sample-slide.png' %}" width="1240" height="698" alt="">
@@ -13,11 +13,11 @@
 			<div class="row">
 				<div class="col-sm-4 col-md-3 project-properties">
 					<h6>Clients</h6>
-					<p class="small">The Nordic Smorrebrod Food</p>
+					<p class="small">{{project.clients}}</p>
 					<h6>Category</h6>
-					<p class="small">Branding, UI/UX, Web Design</p>
+					<p class="small"></p>
 					<h6>Posted</h6>
-					<p class="small">July 30th, 2015</p>
+					<p class="small">{{project.start_date}}</p>
 					<p class="social-share">
 						<a href="#" class="social-link"><i class="fa fa-facebook"></i></a>
 						<a href="#" class="social-link"><i class="fa fa-twitter"></i></a>
@@ -28,8 +28,7 @@
 					</p>
 				</div>
 				<div class="col-sm-8 col-md-8 col-md-offset-1">
-					<p>The Nordic were very skeptical when they first contacted us. They are a startup Coffee house and a small chain of family restaurants. Their brief learly depicted that it wasn't simply a lorem ipsum or dream. His room, a proper human <a href="#">Themeforest Exa</a> a little too small, lay peacefully between its four familiar walls. A collection of textile samples lay spread out on the table.</p>
-					<p>Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame.</p>
+					{{project.description|safe}}
 					<div class="margin-1"></div>
 					<p class="tags"><strong>Tagged:</strong><a href="#">Blog</a> <a href="#">Mobile</a> <a href="#">Agency</a> <a href="#">Portfolio</a></p>
 				</div>
