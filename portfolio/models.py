@@ -38,15 +38,18 @@ class Upload(models.Model):
     image = models.ImageField(upload_to=get_image_path)
 
     # add this bit in after our model
-def save(self, *args, **kwargs):
-    # this is required when you override save functions
-    super(Upload, self).save(*args, **kwargs)
-    # our new code
-    if self.image:
-        image = Image.open(self.image)
-        i_width, i_height = image.size
-        max_size = (100,100)
+    def save(self, *args, **kwargs):
+        # this is required when you override save functions
+        super(Upload, self).save(*args, **kwargs)
+        # our new code
+        if self.image:
+            image = Image.open(self.image)
+            i_width, i_height = image.size
+            max_size = (1240,700)
 
-        if i_width > 100:
-            image.thumbnail(max_size, Image.ANTIALIAS)
-            image.save(self.image.path)
+            if i_width > 1240:
+                image.thumbnail(max_size, Image.ANTIALIAS)
+                image.save(self.image.path)
+            elif i_height > 700:
+                image.thumbnail(max_size, Image.ANTIALIAS)
+                image.save(self.image.path)
