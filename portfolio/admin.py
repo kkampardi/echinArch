@@ -24,7 +24,8 @@ class TagAdmin(admin.ModelAdmin):
 
 class PostAdmin(admin.ModelAdmin):
     model = Post
-    prepopulated_fields = {'slug': ('publish',)}
+    list_display = ('title',)
+    prepopulated_fields = {'slug': ('title',)}
 
 # Register your models here.
 admin.site.register(Project, ProjectAdmin)

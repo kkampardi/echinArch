@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, render_to_response
 from django.utils import timezone
-from .models import Project
+from .models import Project, Post
 
 def home(request):
     return  render( request, 'home.html', {} )
@@ -39,6 +39,13 @@ def portfolio_detail(request, pk):
 def contact(request):
     return render( request, 'contact.html', {})
 
-def post_list(reguest):
-    posts = Post.objects.filter(publish__lte=timezone.now().order_by('publish'))
-    return render(request, 'blog/blog_list.html', {'post': post })
+def post_list(request):
+    posts = Post.objects.filter(publish__lte=timezone.now()).order_by('publish')
+    return render(request, 'blog/post_list.html', {'posts': posts })
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'blog/blog_detail.htm',
+    {
+        'post': post,
+    })

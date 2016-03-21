@@ -41,8 +41,9 @@
 							<li {% if request.path == url %}class="current-menu-item current-menu-parent"{% endif %}>
 								<a href="{{ url }}">Contact</a>
 							</li>
-							<li class="menu-item-has-children">
-								<a href="#">Blog</a>
+							{% url 'post_list' as url %}
+							<li {% if request.path == url %}class="current-menu-item current-menu-parent"{% endif %}>
+								<a href="{{ url }}">Blog</a>
 							</li>
 							<li class="menu-item-search">
 								<a href="search.html"><i class="fa fa-search"></i><i class="fa fa-times"></i></a>
