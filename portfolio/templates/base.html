@@ -12,6 +12,7 @@
 	<link rel="shortcut icon" href="favicon.png">
 	<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 	<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/style-personal.css' %}" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -30,20 +31,27 @@
 					<nav>
 						<ul>
 							{% url 'home' as url %}
-							<li {% if request.path == url %} class="current-menu-item active"{% endif %}><a href="{{ url }}">Home</a></li>
+							<li {% if request.path == url %} class="main-menu-item menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-87 current_page_item dropdown-align-left"
+							{% else %}class="main-menu-item menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page dropdown-align-left menu-item-home"{% endif %}>
+								<a class="menu-link main-menu-link" href="{{ url }}">Home</a></li>
 							{% url 'about' as url %}
-							<li {% if request.path == url %} class="current-menu-item active"{% endif %}><a href="{{ url }}">About</a></li>
+							<li {% if request.path == url %} class="main-menu-item menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-87 current_page_item dropdown-align-left"
+							{% else %}class="main-menu-item menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page dropdown-align-left"{% endif %}>
+								<a class="menu-link main-menu-link" href="{{ url }}">About</a></li>
 							{% url 'portfolio_list' as url %}
-							<li {% if request.path == url %}class="current-menu-item current-menu-parent"{% endif %}>
-								<a href="{{ url }}">Work</a>
+							<li {% if request.path == url %} class="main-menu-item menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-87 current_page_item dropdown-align-left"
+							{% else %} class="main-menu-item menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page dropdown-align-left"{% endif %}>
+								<a class="menu-link main-menu-link" href="{{ url }}">Work</a>
 							</li>
 							{% url 'contact' as url %}
-							<li {% if request.path == url %}class="current-menu-item current-menu-parent"{% endif %}>
-								<a href="{{ url }}">Contact</a>
+							<li {% if request.path == url %} class="main-menu-item menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-87 current_page_item dropdown-align-left"
+							{% else %}class="main-menu-item menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page dropdown-align-left"{% endif %}>
+								<a class="menu-link main-menu-link" href="{{ url }}">Contact</a>
 							</li>
 							{% url 'post_list' as url %}
-							<li {% if request.path == url %}class="current-menu-item current-menu-parent"{% endif %}>
-								<a href="{{ url }}">Blog</a>
+							<li {% if request.path == url %} class="main-menu-item menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-87 current_page_item dropdown-align-left"
+							{% else %}class="main-menu-item menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page dropdown-align-left"{% endif %}>
+								<a class="menu-link main-menu-link" href="{{ url }}">Blog</a>
 							</li>
 							<li class="menu-item-search">
 								<a href="search.html"><i class="fa fa-search"></i><i class="fa fa-times"></i></a>
@@ -78,6 +86,11 @@
 			</p>
 		</div>
 	</footer>
+
+	<a href="#page" class="btn-back scrollableLink btn-back-pill">
+		<span class="icon-arrow-up4"></span>
+	</a>
+
 	<script type="text/javascript" src="{% static  'js/jquery.min.js' %}"></script>
 	<script type="text/javascript" src="{% static  'js/site.js' %}"></script>
 	<script type="text/javascript" src="{% static  'js/owl.carousel.min.js' %}"></script>
