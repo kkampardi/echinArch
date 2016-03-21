@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 from ckeditor.fields import RichTextField
@@ -10,6 +11,8 @@ class Project(models.Model):
     short_description = models.CharField(max_length=400)
     description = RichTextField()
     clients = models.CharField(max_length=400)
+    category = models.ManyToManyField('Category')
+    tag = models.ManyToManyField('Tag')
     start_date = models.DateField(blank=True, null=True)
     image = models.ImageField(upload_to='portfolio')
 
@@ -53,3 +56,50 @@ class Upload(models.Model):
             elif i_height > 700:
                 image.thumbnail(max_size, Image.ANTIALIAS)
                 image.save(self.image.path)
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=50, unique=True)
+
+    def get_projects(self):
+        return Project.objects.filter(category=self)
+
+    class Meta:
+        verbose_name_plural = "categories"
+        ordering = ["name"]
+
+    def __unicode__(self):
+        return self.name
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=50, unique=True)
+
+    class Meta:
+        ordering = ["name"]
+
+    def __unicode__(self):
+        return self.name
+
+#basic blog Model
+class Post(models.Model):
+    STATUS_CHOICES = (
+        ('draft', 'Draft'),
+        ('published', 'Published'),
+        )
+    title = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=250,unique_for_date='publish')
+    author = models.ForeignKey(User,related_name='blog_posts')
+    body = models.TextField()
+    publish = models.DateTimeField(default=timezone.now)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=10,choices=STATUS_CHOICES,default='draft')
+
+    class Meta:
+        ordering = ('-publish',)
+
+    def __str__(self):
+        return self.title

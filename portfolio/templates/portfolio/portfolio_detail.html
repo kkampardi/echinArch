@@ -15,7 +15,7 @@
 					<h6>Clients</h6>
 					<p class="small">{{project.clients}}</p>
 					<h6>Category</h6>
-					<p class="small"></p>
+					<p class="small">{% for category in categories %}{{category.name}} {% endfor %}</p>
 					<h6>Posted</h6>
 					<p class="small">{{project.start_date}}</p>
 					<p class="social-share">
@@ -30,52 +30,28 @@
 				<div class="col-sm-8 col-md-8 col-md-offset-1">
 					{{project.description|safe}}
 					<div class="margin-1"></div>
-					<p class="tags"><strong>Tagged:</strong><a href="#">Blog</a> <a href="#">Mobile</a> <a href="#">Agency</a> <a href="#">Portfolio</a></p>
+					<p class="tags"><strong>Tagged:</strong>
+						{% for tag in tags %}
+						<a href="#">{{tag.name}}</a>
+						{% endfor %}
+					</p>
 				</div>
 			</div>
 			<div class="margin-3"></div>
 			<h5>Similar Projects</h5>
 			<div class="owl-carousel owl-thumbs">
-				<div class="thumb dark-overlay">
-					<div class="photo">
-						<a href="project.html">
-							<img src="{% static 'img/sample-thumb.png' %}" alt="" width="434" height="434">
-							<span class="info"><span class="big-excerpt">Din Kook</span></span>
-						</a>
-					</div>
-				</div>
-				<div class="thumb dark-overlay">
-					<div class="photo">
-						<a href="project.html">
-							<img src="{% static 'img/sample-thumb.png' %}" alt="" width="434" height="434">
-							<span class="info"><span class="big-excerpt">Suprette</span></span>
-						</a>
-					</div>
-				</div>
-				<div class="thumb dark-overlay">
-					<div class="photo">
-						<a href="project.html">
-							<img src="{% static 'img/sample-thumb.png' %}" alt="" width="434" height="434">
-							<span class="info"><span class="big-excerpt">Frock</span></span>
-						</a>
-					</div>
-				</div>
-				<div class="thumb dark-overlay">
-					<div class="photo">
-						<a href="project.html">
-							<img src="{% static 'img/sample-thumb.png' %}" alt="" width="434" height="434">
-							<span class="info"><span class="big-excerpt">Maon</span></span>
-						</a>
-					</div>
-				</div>
-				<div class="thumb dark-overlay">
-					<div class="photo">
-						<a href="project.html">
-							<img src="{% static 'img/sample-thumb.png' %}" alt="" width="715" height="715">
-							<span class="info"><span class="big-excerpt">Northbound</span></span>
-						</a>
-					</div>
-				</div>
+				{% for category in categories %}
+					{% for project in category.get_projects %}
+						<div class="thumb dark-overlay">
+							<div class="photo">
+								<a href="#">
+									<img src="{% static 'img/sample-thumb.png' %}" alt="" width="434" height="434">
+									<span class="info"><span class="big-excerpt">{{project.name}}</span></span>
+								</a>
+							</div>
+						</div>
+					{% endfor %}
+				{% endfor %}
 			</div>
 			<div class="margin-6"></div>
 		</div>

@@ -1,30 +1,6 @@
 from django.contrib import admin
 #import model
-"""
-from portfolio.models import Thing, Social, Upload
-
-# set up automated slug creation
-class ThingAdmin(admin.ModelAdmin):
-    model = Thing
-    list_display = ('name', 'description',)
-    prepopulated_fields = {'slug': ('name',)}
-
-class SocialAdmin(admin.ModelAdmin):
-    model = Social
-    list_display = ('network', 'username',)
-
-
-class UploadAdmin(admin.ModelAdmin):
-    list_display = ('thing',)
-    list_display_links = ('thing',)
-
-# Register your models here.
-admin.site.register(Thing, ThingAdmin)
-admin.site.register(Social, SocialAdmin)
-admin.site.register(Upload, UploadAdmin)
-"""
-from django.contrib import admin
-from models import Project, Upload
+from models import Project, Upload, Category, Tag, Post
 
 #automated slug creation
 class ProjectAdmin(admin.ModelAdmin):
@@ -36,6 +12,23 @@ class UploadAdmin(admin.ModelAdmin):
     list_display = ('project',)
     list_display_links = ('project',)
 
+class CategoryAdmin(admin.ModelAdmin):
+    model = Category
+    list_display = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
+
+class TagAdmin(admin.ModelAdmin):
+    model = Tag
+    list_display = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
+
+class PostAdmin(admin.ModelAdmin):
+    model = Post
+    prepopulated_fields = {'slug': ('publish',)}
+
 # Register your models here.
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Upload, UploadAdmin)
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Tag, TagAdmin)
+admin.site.register(Post,PostAdmin)
